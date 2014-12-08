@@ -17,5 +17,6 @@
 
 .DS_store
 *.swp
+*.rdoc
 config/database.yml
 db/seed.rb
