@@ -19,4 +19,4 @@
 *.swp
 *.rdoc
 config/database.yml
-db/seed.rb
+db/seeds.rb
