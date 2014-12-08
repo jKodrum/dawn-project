@@ -3,7 +3,8 @@
 <% end -%>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <%= link_to "註冊", new_registration_path(resource_name) %><br />
+  還沒註冊？
+  <%= link_to "立馬註冊！", new_registration_path(resource_name) %><br />
 <% end -%>
 
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>

@@ -1,17 +1,19 @@
-<h2>Log in</h2>
+<%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "form-signin"}) do |f| %>
+  <h2 class="form-signin-heading">登入</h2>
+  <%= f.email_field :email, autofocus: true, placeholder: "Email", icon: "envelope" %>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+  <%= f.password_field :password, autocomplete: "off", placeholder: "密碼", icon: "lock" %>
 
-  <div><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+  <% if devise_mapping.rememberable? %>
+    <div><%= f.check_box :remember_me %> <%= f.label :"記住我"%></div>
+  <% end %>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
-  <% end -%>
+  <%= f.submit "登入", class: "btn btn-lg btn-primary btn-block" %>
+  <%= render "devise/shared/links" %>
 
-  <div><%= f.submit "登入" %></div>
+  <%= notice_tag %>
+  <%= flash[:notice] %>
+  <%= alert_tag %>
+  <%= flash[:alert] %>
 <% end %>
 
-<%= render "devise/shared/links" %>
