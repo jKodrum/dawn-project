@@ -1,4 +1,10 @@
 module ApplicationHelper
+  def user_tag
+    if user_signed_in?
+      link_to current_user.name, user_path(current_user)
+    end
+  end
+
   def login_tag
     if !user_signed_in?
       link_to "登入", new_user_session_path
