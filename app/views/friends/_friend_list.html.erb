@@ -1,0 +1,11 @@
+<tr> 
+  <td> # </td>
+  <td> <%= friendship.friend.id %> </td>
+  <td> <%= link_to friendship.friend.name, user_profile_path(friendship.friend.name, friendship.friend.id) %> </td>
+  <td> <%= friendship.status %> </td>
+  <% if current_user == friendship.user %>
+    <td> <%= friend_btn_tag(friendship.friend) %> </td>
+    <td> <%= notice_tag %> </td>
+    <td> <%= alert_tag %> </td>
+  <% end %>
+</tr>

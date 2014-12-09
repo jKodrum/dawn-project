@@ -1,0 +1,12 @@
+<h1> <%= link_to "#{@user.name}'s Page", user_profile_path(@user.name, @user.id) %> </h1>
+<%= friend_btn_tag(@user) %>
+<% if current_user!=@user %>
+  <%= notice_tag %>
+  <%= alert_tag %>
+<% end %>
+<li> <%= link_to "About" %> </li>
+<li> <%= link_to "Posts" %> </li>
+<li> <%= link_to "Friends", user_friends_path(@user.name) %> </li>
+
+<ul class="nav pills pull-right">
+</ul>

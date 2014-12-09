@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'jobs#index'
-  resources :users
+
+  get '/:user_name(.:id)' => "users#show", as: :user_profile
+  get '/:user_name(.:id)/friends' => "friends#index", as: :user_friends
+  post '/request/:user_name(.:id)' => "users#request_friend", as: :request_friend
+  post '/cancel_request/:user_name(.:id)' => "users#cancel_request", as: :cancel_request
+  post '/accept/:user_name(.:id)' => "users#accept_friend", as: :accept_friend
+  post '/remove/:user_name(.:id)' => "users#remove_friend", as: :remove_friend
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
