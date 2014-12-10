@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141208154723) do
+ActiveRecord::Schema.define(version: 20141210141623) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,35 @@ ActiveRecord::Schema.define(version: 20141208154723) do
     t.integer  "friend_id"
     t.string   "status"
     t.datetime "accepted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "jobs", force: true do |t|
+    t.string   "title"
+    t.string   "content"
+    t.string   "location"
+    t.float    "lat"
+    t.float    "lng"
+    t.string   "treatment"
+    t.string   "type"
+    t.string   "worktime"
+    t.string   "leavesys"
+    t.string   "availability"
+    t.string   "reqnum"
+    t.string   "acceptid"
+    t.string   "exp"
+    t.string   "education"
+    t.string   "department"
+    t.string   "language"
+    t.string   "tool"
+    t.string   "skill"
+    t.string   "othercond"
+    t.string   "contact"
+    t.string   "emailsrc"
+    t.string   "inperson"
+    t.string   "telesrc"
+    t.string   "other"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

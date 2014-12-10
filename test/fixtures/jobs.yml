@@ -1,0 +1,53 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  content: MyString
+  location: MyString
+  lat: 1.5
+  lng: 1.5
+  treatment: MyString
+  type: 
+  worktime: MyString
+  leavesys: MyString
+  availability: MyString
+  reqnum: MyString
+  acceptid: MyString
+  exp: MyString
+  education: MyString
+  department: MyString
+  language: MyString
+  tool: MyString
+  skill: MyString
+  othercond: MyString
+  contact: MyString
+  emailsrc: MyString
+  inperson: MyString
+  telesrc: MyString
+  other: MyString
+
+two:
+  title: MyString
+  content: MyString
+  location: MyString
+  lat: 1.5
+  lng: 1.5
+  treatment: MyString
+  type: 
+  worktime: MyString
+  leavesys: MyString
+  availability: MyString
+  reqnum: MyString
+  acceptid: MyString
+  exp: MyString
+  education: MyString
+  department: MyString
+  language: MyString
+  tool: MyString
+  skill: MyString
+  othercond: MyString
+  contact: MyString
+  emailsrc: MyString
+  inperson: MyString
+  telesrc: MyString
+  other: MyString
