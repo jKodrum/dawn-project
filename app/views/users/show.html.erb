@@ -1,1 +1,36 @@
-<%= render 'user' %>
+<div class="row"> 
+  <!-- left column -->
+  <div class="col-md-3"> 
+    <div class="text-center"> 
+      <%= image_tag "profile-icon.png", size: "220" %>
+    </div>
+  </div>
+  <!-- right column -->
+  <div class="col-md-9"> 
+    <div class="row">
+      <div class="col-md-4"> 
+          <h1> <%= link_to @user.name, user_profile_path(@user.name, @user.id) %> </h1>
+      </div>
+      <div class="col-md-2">
+        <h1> <%= friend_btn_tag(@user) %> </h1>
+      </div>
+    </div><!-- /row -->
+    <div class="row">
+      <%= list(class: 'h3') do |li|
+      li << ("名稱： " << @user.name)
+      li << ("Email： " << @user.email)
+      li << "專長：  "
+      end %>
+      <%= flash_tag %>
+    </div><!-- /row -->
+  </div><!-- /col -->
+</div><!-- /row -->
+
+<%= tabs do |t| 
+  t.tab('文章') do
+    %(This is #{@user.name}'s Profile)
+  end
+  t.tab('好友') do
+    render 'friends'
+  end
+  end %>

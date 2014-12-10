@@ -1,10 +1,9 @@
-<div class="container">
 <!-- Fixed navbar -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <%= link_to root_path, class: "navbar-brand" do %>
-        <i class="glyphicon glyphicon-home"></i> 黎明志工銀行
+        <i class="glyphicon glyphicon-home white"></i> 黎明志工銀行
       <% end %>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
@@ -24,11 +23,12 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <% if current_user.try(:admin) %>
+        <li> <%= link_to "Users", admin_users_path(current_user.name, current_user.id), method: :post %> </li>
+        <% end %>
         <li> <%= user_tag %> </li>
         <li> <%= login_tag %> </li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>
 </nav>
-</div>
-

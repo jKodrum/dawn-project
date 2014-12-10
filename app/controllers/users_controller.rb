@@ -1,5 +1,11 @@
 class UsersController < ApplicationController
   before_action :find_user 
+  def index
+    if @user != current_user
+      redirect_to(request.env['HTTP_REFERER'])
+    end
+    @users = User.where.not(id: current_user)
+  end
 
   def show
   end
@@ -7,7 +13,7 @@ class UsersController < ApplicationController
   def request_friend
     if !current_user.has_relation_of?(@user)
       current_user.sends_request_to(@user)
-      flash[:notice] = "送出朋友邀請給#{@user.name}"
+      flash[:success] = "送出好友邀請給#{@user.name}"
     end
     # redirect back
     redirect_to(request.env['HTTP_REFERER'])
@@ -16,9 +22,11 @@ class UsersController < ApplicationController
   def cancel_request
     if current_user.has_sent_request_to?(@user)
       current_user.cancels_request_from(@user)
-      flash[:notice] = "收回對#{@user.name}的邀請"
+      flash[:warning] = "收回對#{@user.name}的好友邀請"
+    elsif current_user.is_friend_of?(@user)
+      flash[:warning] = "已經是好友"
     else
-      flash[:notice] = "什麼也沒發生"
+      flash[:alert] = "好友邀請已撤銷"
     end
     # redirect back
     redirect_to(request.env['HTTP_REFERER'])
@@ -27,9 +35,9 @@ class UsersController < ApplicationController
   def accept_friend
     if current_user.has_got_request_from?(@user)
       current_user.accepts_friend(@user)
-      flash[:notice] = "加#{@user.name}為好友"
+      flash[:success] = "加#{@user.name}為好友"
     else
-      flash[:notice] = "什麼也沒發生"
+      flash[:alert] = "好友邀請已被取消"
     end
     # redirect back
     redirect_to(request.env['HTTP_REFERER'])
@@ -38,9 +46,9 @@ class UsersController < ApplicationController
   def remove_friend
     if current_user.is_friend_of?(@user)
       current_user.removes_friend(@user)
-      flash[:notice] = "和#{@user.name}不是朋友"
+      flash[:notice] = "和#{@user.name}不是好友"
     else
-      flash[:notice] = "什麼也沒發生"
+      flash[:alert] = "早已不是好友"
     end
     # redirect back
     redirect_to(request.env['HTTP_REFERER'])
