@@ -1,5 +1,5 @@
 <h1> 好友列表: </h1>
-<table class="table"> 
+<table class="table table-striped"> 
   <thead> 
     <tr> 
       <td> # </td>
@@ -12,3 +12,4 @@
     <%= render partial: 'friend_list', collection: @user.friendships, as: :friendship %>
   </tbody>
 </table>
+
