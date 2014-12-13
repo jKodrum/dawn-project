@@ -26,6 +26,7 @@
         <% if current_user.try(:admin) %>
         <li> <%= link_to "Users", admin_users_path(current_user.name, current_user.id), method: :post %> </li>
         <% end %>
+        <li> <%= link_image_tag current_user.try(:image) %> </li>
         <li> <%= user_tag %> </li>
         <li> <%= login_tag %> </li>
       </ul>

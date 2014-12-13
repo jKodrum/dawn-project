@@ -9,8 +9,4 @@ Rails.application.routes.draw do
   post '/cancel_request/:user_name(.:id)' => "users#cancel_request", as: :cancel_request
   post '/accept/:user_name(.:id)' => "users#accept_friend", as: :accept_friend
   post '/remove/:user_name(.:id)' => "users#remove_friend", as: :remove_friend
-
-  #get 'auth/:privider/callback' => 'sessions#create'
-  #get 'auth/failure' => redirect('/')
-  #get 'signout' => 'sessions#destroy', as: 'signout'
 end

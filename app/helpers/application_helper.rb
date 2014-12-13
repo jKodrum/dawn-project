@@ -13,6 +13,12 @@ module ApplicationHelper
     end
   end
 
+  def link_image_tag(image)
+    if user_signed_in? && current_user.provider
+      link_to image_tag(image), user_profile_path(current_user.name, current_user.id), style: "padding: 0"
+    end
+  end
+
   def flash_tag
     if flash[:alert]
       f(message: '警告： ' << flash[:alert], class: "alert-danger")

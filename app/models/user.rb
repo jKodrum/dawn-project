@@ -21,11 +21,15 @@ class User < ActiveRecord::Base
       user.name = auth.info.name
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
-      #user.oauth_token = auth.credentials.token
+      user.oauth_token = auth.credentials.token
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)##
       user.image = auth.info.image
       user.save!
     end
+  end
+
+  def facebook
+    @facebook ||= Koala::Facebook::API.new(oauth_token)
   end
 
   def has_relation_of?(other)

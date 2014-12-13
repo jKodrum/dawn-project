@@ -9,9 +9,9 @@
   <% end %>
 
   <%= f.submit "登入", class: "btn btn-lg btn-primary btn-block" %>
-  <p> 或者 </p>
-  <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook), class: "btn btn-info btn-block" %>
   <%= render "devise/shared/links" %>
+  <%= f.label "或者" %>
+  <%= link_to "Facebook登入", user_omniauth_authorize_path(:facebook), class: "btn btn-info btn-block" %>
 
   <%= flash_tag %>
 <% end %>
