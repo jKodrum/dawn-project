@@ -1,13 +1,18 @@
 class UsersController < ApplicationController
-  before_action :find_user 
+  before_action :find_user, except: :index
   def index
-    if @user != current_user
-      redirect_to(request.env['HTTP_REFERER'])
+    unless current_user.try(:admin)
+      redirect_to :root
     end
     @users = User.where.not(id: current_user)
   end
 
   def show
+  end
+
+  def destroy
+    @user.destroy
+    redirect_to :back
   end
 
   def request_friend
