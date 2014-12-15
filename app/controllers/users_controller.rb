@@ -16,6 +16,7 @@ class UsersController < ApplicationController
       flash[:success] = "送出好友邀請給#{@user.name}"
     end
     # redirect back
+    # redirect_to :back, notice: "Notice..."
     redirect_to(request.env['HTTP_REFERER'])
   end
 

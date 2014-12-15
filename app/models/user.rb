@@ -5,13 +5,16 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, omniauth_providers: [:facebook]
 
-  validates :name, presence: true
-
-  has_many :friendships
+  has_many :friendships, dependent: :destroy
+  has_many :friendships_inverse, class_name: "Friendship", foreign_key: :friend_id, dependent: :destroy
   has_many :relations, through: :friendships, source: :friend
   has_many :friends, -> { where(friendships: { status: 'accepted' }) }, through: :friendships, source: :friend
   has_many :pending_friends, -> { where(friendships: { status: 'pending' }) }, through: :friendships, source: :friend
   has_many :requested_friends, -> { where(friendships: { status: 'requested' }) }, through: :friendships, source: :friend
+
+  validates :name, presence: true
+
+  before_create :set_provider
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -80,5 +83,10 @@ class User < ActiveRecord::Base
       @friendship_inverse = friend.friendships.find_by_friend_id(self.id)
       @friendship_inverse.destroy
     end
+  end
+
+  private
+  def set_provider
+    self.provider ||= "dawnbank"
   end
 end
