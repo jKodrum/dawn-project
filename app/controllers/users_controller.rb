@@ -59,7 +59,8 @@ class UsersController < ApplicationController
   def find_user
     @user = User.find_by_name(params[:user_name])
     unless @user
-      render status: 404, text: params[:user_name] << " not found."
+      render status: 404, 
+        text: "dawnbank Notice: " << params[:user_name] << " not found."
     end
   end
 

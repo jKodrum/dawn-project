@@ -6,11 +6,23 @@ class User < ActiveRecord::Base
   devise :omniauthable, omniauth_providers: [:facebook]
 
   has_many :friendships, dependent: :destroy
-  has_many :friendships_inverse, class_name: "Friendship", foreign_key: :friend_id, dependent: :destroy
+  has_many :friendships_inverse,
+           class_name: "Friendship",
+           foreign_key: :friend_id,
+           dependent: :destroy
   has_many :relations, through: :friendships, source: :friend
-  has_many :friends, -> { where(friendships: { status: 'accepted' }) }, through: :friendships, source: :friend
-  has_many :pending_friends, -> { where(friendships: { status: 'pending' }) }, through: :friendships, source: :friend
-  has_many :requested_friends, -> { where(friendships: { status: 'requested' }) }, through: :friendships, source: :friend
+  has_many :friends,
+           -> { where(friendships: { status: 'accepted' }) },
+           through: :friendships,
+           source: :friend
+  has_many :pending_friends,
+           -> { where(friendships: { status: 'pending' }) },
+           through: :friendships,
+           source: :friend
+  has_many :requested_friends,
+           -> { where(friendships: { status: 'requested' }) },
+           through: :friendships,
+           source: :friend
 
   validates :name, presence: true
 
