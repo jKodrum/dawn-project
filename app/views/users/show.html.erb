@@ -1,11 +1,11 @@
 <div class="row"> 
-  <!-- left column -->
+  <!-- left column: profile image -->
   <div class="col-md-3"> 
     <div class="text-center"> 
       <%= image_tag "profile-icon.png", size: "220" %>
     </div>
   </div>
-  <!-- right column -->
+  <!-- right column: about -->
   <div class="col-md-9"> 
     <div class="row">
       <div class="col-md-4"> 
@@ -26,12 +26,14 @@
   </div><!-- /col -->
 </div><!-- /row -->
 
+
+<!-- tabs -->
 <%= tabs do |t| 
   t.tab('文章') do
     render 'posts'
   end
   t.tab('好友') do
-    render 'friends'
+    @user.friendships.blank? ? "尚未加任何好友" : (render 'friends') 
   end
   t.tab('服務清單') do
   end
