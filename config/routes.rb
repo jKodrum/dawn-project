@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     get 'search', on: :collection
   end
 
-  resources :posts, only: [:index]
+  get 'posts' => 'posts#index', as: "posts_index"
   scope 'user/:user_name(.:user_id)' do
     resources :posts, only: [:create, :update, :destroy, :edit]
     post 'request_friend', controller: 'users'
