@@ -22,6 +22,13 @@
         <% end %>
         <li> <%= link_image_tag current_user.try(:image) %> </li>
         <li> <%= user_tag %> </li>
+        <% if user_signed_in? %>
+          <li> 
+          <%= link_to edit_user_registration_path do %>
+            <i class="glyphicon glyphicon-cog"></i>
+          <% end %>
+          </li>
+        <% end %>
         <li> <%= signup_tag %> </li>
         <li> <%= login_tag %> </li>
       </ul>
