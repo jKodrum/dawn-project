@@ -19,6 +19,6 @@ Rails.application.routes.draw do
 
   # User
   get '/admin' => "users#index", as: :admin_users
-  get '/user/:user_name(.:id)' => "users#show", as: :user_profile
+  get '/user/:user_name(.:user_id)' => "users#show", as: :user_profile
 
 end
