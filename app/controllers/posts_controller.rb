@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :find_user, except: [:index]
   def index
-    @posts = Post.all
+    @posts = Post.all.recent
   end
 
   def edit
