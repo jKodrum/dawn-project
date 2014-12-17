@@ -21,6 +21,9 @@
           <li><a href="#">One more separated link</a></li>
         </ul>
         </li>
+        <li> 
+          <%= render 'layouts/search_bar' %>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if current_user.try(:admin) %>
