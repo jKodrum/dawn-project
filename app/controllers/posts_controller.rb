@@ -9,7 +9,17 @@ class PostsController < ApplicationController
   end
 
   def update
-    redirect_to :back
+    @post = @user.posts.find(params[:id])
+    if @post.update(post_params)
+      flash[:notice] = "成功修改文章"
+    else
+      m = "文章修改失敗，"
+      @post.errors.messages.each do |e|
+        m << e.join(", ") << " "
+      end
+      flash[:alert] = m
+    end
+    redirect_to user_profile_path(@user.name, @user.id)
   end
 
   def create
@@ -17,7 +27,7 @@ class PostsController < ApplicationController
     if @post.save
       flash[:notice] = "成功發佈文章"
     else
-      m = ""
+      m = "文章發佈失敗，"
       @post.errors.messages.each do |e|
         m << e.join(", ") << " "
       end
@@ -29,6 +39,7 @@ class PostsController < ApplicationController
   def destroy
     @post = @user.posts.find(params[:id])
     @post.destroy
+    flash[:warning] = "文章已成功刪除"
     redirect_to user_profile_path(@user.name, @user.id)
   end
 
