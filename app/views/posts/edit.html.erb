@@ -1,1 +1,13 @@
-<h1> Edit <%= @post.title %> </h1>
+<h1> 編輯 <%= @post.title %> </h1>
+<div class="row">
+  <div class="col-md-6">
+<%= form_for [@user, @post], url: post_path(@user.name, @user.id, @post), method: :patch do |f| %>
+  <%= f.label "標題：" %>
+  <%= f.text_field :title, class: "form-control" %>
+  <%= f.label "內文：" %>
+  <%= f.text_area :content, style: "height: 200px;", class: "form-control" %>
+  <%= f.submit "變更", class: "btn btn-primary" %>
+  <%= link_to "取消", user_profile_path(@post.author.name, @post.author.id), class: "btn btn-default pull-right" %>
+<% end %>
+</div>
+</div>
