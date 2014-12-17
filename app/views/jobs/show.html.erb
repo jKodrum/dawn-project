@@ -1,5 +1,6 @@
 <h1><%= @job.title %> </h1>                                                                                                                
 <p>來源：<%= link_to '104人力銀行', @job.joburl %></p>
+<p> 更新日期： <%= @job.last_modified.strftime("%m/%e %a, %Y") %> </p>
 <h2>簡介</h2>
 <table>
   <tr><td>工作內容： <%= @job.content %></td></tr>
