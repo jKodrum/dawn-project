@@ -7,4 +7,4 @@
   </div>
 <% end %>
 
-<%= render( partial: 'post_list', collection: @posts, as: :post) || "尚未發佈任何文章" %>
+<%= render( partial: 'posts/post_list', collection: @posts, as: :post) || "尚未發佈任何文章" %>

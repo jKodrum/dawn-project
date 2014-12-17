@@ -1,5 +1,9 @@
 class PostsController < ApplicationController
-  before_action :find_user
+  before_action :find_user, except: [:index]
+  def index
+    @posts = Post.all
+  end
+
   def edit
     @post = @user.posts.find(params[:id])
   end
