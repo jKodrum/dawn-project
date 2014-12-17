@@ -1,0 +1,10 @@
+<h1> 文章 </h1>
+<% if @user == current_user %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= render 'post_form' %>
+    </div>
+  </div>
+<% end %>
+
+<%= render( partial: 'post_list', collection: @posts, as: :post) || "尚未發佈任何文章" %>

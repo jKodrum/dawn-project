@@ -5,6 +5,12 @@ module ApplicationHelper
     end
   end
 
+  def signup_tag
+    if !user_signed_in?
+      link_to "註冊", new_user_registration_path
+    end
+  end
+
   def login_tag
     if !user_signed_in?
       link_to "登入", new_user_session_path

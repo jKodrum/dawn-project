@@ -28,9 +28,11 @@
 
 <%= tabs do |t| 
   t.tab('文章') do
-    %(This is #{@user.name}'s Profile)
+    render 'posts'
   end
   t.tab('好友') do
     render 'friends'
+  end
+  t.tab('服務清單') do
   end
   end %>

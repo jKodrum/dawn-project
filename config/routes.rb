@@ -6,13 +6,19 @@ Rails.application.routes.draw do
   resources :jobs, only: [:index, :show] do
     get 'search', on: :collection
   end
-  delete '/users/:user_name(.:id)', to: 'users#destroy', as: :destroy_user
-  get '/user/:user_name(.:id)' => "users#show", as: :user_profile
+
+  scope 'user/:user_name(.:user_id)' do
+    resources :posts, only: [:create, :update, :destroy, :edit]
+    post 'request_friend', controller: 'users'
+    post 'cancel_request', controller: 'users'
+    post 'accept_friend', controller: 'users'
+    post 'remove_friend', controller: 'users'
+    delete 'destroy', controller: 'users'
+  end
+
+
+  # User
   get '/admin' => "users#index", as: :admin_users
-  post '/request/:user_name(.:id)' => "users#request_friend", 
-          as: :request_friend
-  post '/cancel_request/:user_name(.:id)' => 
-          "users#cancel_request", as: :cancel_request
-  post '/accept/:user_name(.:id)' => "users#accept_friend", as: :accept_friend
-  post '/remove/:user_name(.:id)' => "users#remove_friend", as: :remove_friend
+  get '/user/:user_name(.:id)' => "users#show", as: :user_profile
+
 end

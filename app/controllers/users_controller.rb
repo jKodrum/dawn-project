@@ -8,6 +8,10 @@ class UsersController < ApplicationController
   end
 
   def show
+    @post = @user.posts.build
+    # give it a where-condition to avoid empty item generated
+    # by ".build" or ".new" when looping
+    @posts = @user.posts.where("id >= 0").recent
   end
 
   def destroy
@@ -63,6 +67,7 @@ class UsersController < ApplicationController
   private
   def find_user
     @user = User.find_by_name(params[:user_name])
+    @user ||= User.find(params[:user_id])
     unless @user
       render status: 404, 
         text: "dawnbank Notice: " << params[:user_name] << " not found."

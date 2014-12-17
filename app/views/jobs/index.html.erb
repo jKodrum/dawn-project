@@ -8,12 +8,12 @@
     <div id="map" style='width: 100%; height: 500px;'></div>
   </div><!-- /col -->
 
-  Show: (<%= @per_page %>) 
-  <% for per_page in [5, 10, 20, 30, 50] %>
-    | <%= link_to per_page, jobs_path(per_page)%>
-  <% end %><br />
-  <%= will_paginate @jobs, style: "align-text: center;" %>
   <div class="col-md-5">
+    Show: (<%= @per_page %>) 
+    <% for per_page in [5, 10, 20, 30, 50] %>
+      | <%= link_to per_page, jobs_path(per_page)%>
+    <% end %><br />
+    <%= will_paginate @jobs, style: "align-text: center;" %>
     <table class="table table-striped table-hover table-condense"> 
       <thead> 
         <tr class="info"> 

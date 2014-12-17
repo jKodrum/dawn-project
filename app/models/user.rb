@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
            -> { where(friendships: { status: 'requested' }) },
            through: :friendships,
            source: :friend
+  has_many :posts
 
   validates :name, presence: true
 
