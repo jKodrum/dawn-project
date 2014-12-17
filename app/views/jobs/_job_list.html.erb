@@ -1,6 +1,6 @@
 <tr> 
   <td> # </td>
   <td> <%= job.id %> </td>
-  <td> <%= truncate(job.title, length:16) %> </td>
+  <td> <%= link_to truncate(job.title, length:14), job_path(job) %> </td>
   <td> <%= truncate(job.location, length:13) %> </td>
 </tr>

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => 
                       { omniauth_callbacks: "omniauth/omniauth_callbacks" }
 
+  resources :jobs, only: [:index, :show]
   delete '/users/:user_name(.:id)', to: 'users#destroy', as: :destroy_user
   get '/user/:user_name(.:id)' => "users#show", as: :user_profile
   get '/admin' => "users#index", as: :admin_users

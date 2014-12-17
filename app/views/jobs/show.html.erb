@@ -1,0 +1,32 @@
+<h1><%= @job.title %> </h1>                                                                                                                
+<p>來源：<%= link_to '104人力銀行', @job.joburl %></p>
+<h2>簡介</h2>
+<table>
+  <tr><td>工作內容： <%= @job.content %></td></tr>
+  <tr><td>工作待遇： <%= @job.treatment %></td></tr>
+  <tr><td>工作性質： <%= @job.jobtype %></td></tr>
+  <tr><td>工作地點： <%= @job.location %></td></tr>
+  <tr><td>上班時段： <%= @job.worktime %></td></tr>
+  <tr><td>休假制度： <%= @job.leavesys %></td></tr>
+  <tr><td>可上班日： <%= @job.availability %></td></tr>
+  <tr><td>需求人數： <%= @job.reqnum %></td></tr>
+</table>
+<h2>工作條件</h2>
+<table>
+  <tr><td>接受身份： <%= @job.acceptid %></td></tr>
+  <tr><td>工作經歷： <%= @job.exp %></td></tr>
+  <tr><td>學歷要求： <%= @job.education %></td></tr>
+  <tr><td>科系要求： <%= @job.department %></td></tr>
+  <tr><td>語文條件： <%= @job.language %></td></tr>
+  <tr><td>擅長工具： <%= @job.tool %></td></tr>
+  <tr><td>工作技能： <%= @job.skill %></td></tr>
+  <tr><td>其它條件： <%= @job.othercond %></td></tr>
+</table>
+<h2>應徵方式</h2>
+<table>
+  <tr><td>連絡人： <%= @job.contact %></td></tr>
+  <tr><td>E-mail： <embed height="26" wmode="transparent" src="<%= @job.emailsrc %>"></td></tr>
+  <tr><td>電洽： <%= image_tag(@job.telesrc) %></td></tr>
+  <tr><td>親洽： <%= @job.inperson %></td></tr>
+  <tr><td>其它： <%= @job.other %></td></tr>
+</table>
