@@ -1,0 +1,23 @@
+<div class="post">
+  <div class="row">
+    <div class="col-md-8">
+      <h2 class="blog-post-title"> <%= @post.title %> </h2>
+      <p> 
+        <%= link_image_tag @post.author.try(:image) %>
+        <%= link_to @post.author.name, user_profile_path(@post.author.name, @post.author.id) %>
+      </p>
+      <p class="blog-post-meta"> <%= @post.updated_at.localtime.strftime("%R %m/%d %a, %Y") %> </p>
+      <%= simple_format @post.content %><br />
+      <% if current_user==@post.author %>
+        <%= link_to "編輯文章", edit_post_path(@post.author.name, @post.author.id, @post), class: "btn btn-warning" %>
+        <%= link_to "刪除文章", post_path(@post.author.name, @post.author.id , @post), class: "btn btn-danger btn-sm", method: :delete, confirm: "確定刪除？" %>
+      <% end %>
+
+      <div class="well">
+        <%= render partial: 'comment_list', collection: @post.comments.where('id >= 0'), as: :comment %>
+        <%= render 'comment_form' %>
+      </div>
+    </div>
+  </div><!-- row -->
+
+</div>

@@ -1,0 +1,10 @@
+<div class="media">
+  <div class="pull-left">
+  <%= link_image_tag comment.commenter.try(:image) %>
+  </div>
+  <div class="media-body">
+    <p> <%= link_to comment.commenter.name, user_profile_path(comment.commenter.name, comment.commenter.id) %> </p>
+      <small> <%= comment.updated_at.localtime.strftime("%R %m/%d %a, %Y") %> </small>
+      <%= simple_format comment.content %>
+  </div>
+</div>

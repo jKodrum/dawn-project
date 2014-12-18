@@ -9,7 +9,9 @@ Rails.application.routes.draw do
 
   get 'posts' => 'posts#index', as: "posts_index"
   scope 'user/:user_name(.:user_id)' do
-    resources :posts, only: [:create, :update, :destroy, :edit]
+    resources :posts, only: [:show, :create, :update, :destroy, :edit] do
+      resources :comments, only: [:create, :update, :edit, :destroy]
+    end
     post 'request_friend', controller: 'users'
     post 'cancel_request', controller: 'users'
     post 'accept_friend', controller: 'users'

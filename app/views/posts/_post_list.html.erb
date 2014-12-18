@@ -1,14 +1,22 @@
 <div class="blog-post">
-  <h2 class="blog-post-title"> <%= post.title %> </h2>
+  <!-- post title -->
+  <h2 class="blog-post-title"> <%= link_to post.title, post_path(post.author.name, post.author.id, post) %> </h2>
   <p> 
     <%= link_image_tag post.author.try(:image) %>
     <%= link_to post.author.name, user_profile_path(post.author.name, post.author.id) %>
   </p>
+  <!-- post body -->
   <p class="blog-post-meta"> <%= post.updated_at.localtime.strftime("%R %m/%d %a, %Y") %> </p>
-  <%= simple_format post.content %><br />
+  <%= simple_format truncate(post.content, length: 300) %>
+  <% if post.content.length > 300 %>
+    <p> <%= link_to "繼續閱讀", post_path(post.author.name, post.author.id, post) %> </p>
+  <% end %>
+
   <% if current_user==post.author %>
     <%= link_to "編輯文章", edit_post_path(post.author.name, post.author.id, post), class: "btn btn-warning" %>
     <%= link_to "刪除文章", post_path(post.author.name, post.author.id , post), class: "btn btn-danger btn-sm", method: :delete, confirm: "確定刪除？" %>
   <% end %>
+
+  <%# render 'comment' %>
   <hr>
 </div>

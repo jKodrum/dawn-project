@@ -4,6 +4,11 @@ class PostsController < ApplicationController
     @posts = Post.all.recent
   end
 
+  def show
+    @post = @user.posts.find(params[:id])
+    @comment = @post.comments.new
+  end
+
   def edit
     @post = @user.posts.find(params[:id])
   end

@@ -1,0 +1,6 @@
+<%= bootstrap_form_for [@post, @comment], url: post_comments_path(@post.author, @post) do |f| %>
+  <%= link_image_tag current_user.try(:image) %>
+  <%= user_tag %>
+  <%= f.text_field :content, hide_label: true, placeholder: "留言...", icon: "pencil" %>
+  <%= f.submit "留言" %>
+<% end %>
