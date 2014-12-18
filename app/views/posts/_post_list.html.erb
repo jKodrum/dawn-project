@@ -2,7 +2,7 @@
   <!-- post title -->
   <h2 class="blog-post-title"> <%= link_to post.title, post_path(post.author.name, post.author.id, post) %> </h2>
   <p> 
-    <%= link_image_tag post.author.try(:image) %>
+    <%= link_user_image_tag post.author %>
     <%= link_to post.author.name, user_profile_path(post.author.name, post.author.id) %>
   </p>
   <!-- post body -->

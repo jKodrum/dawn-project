@@ -19,9 +19,15 @@ module ApplicationHelper
     end
   end
 
-  def link_image_tag(image)
+  def current_user_image_tag
     if user_signed_in? && current_user.provider
-      link_to image_tag(image), user_profile_path(current_user.name, current_user.id), style: "padding: 0"
+      link_to image_tag(current_user.image), user_profile_path(current_user.name, current_user.id), style: "padding: 0"
+    end
+  end
+
+  def link_user_image_tag(user)
+    if user_signed_in? && user.provider
+      link_to image_tag(user.image), user_profile_path(user.name, user.id), style: "padding: 0"
     end
   end
 

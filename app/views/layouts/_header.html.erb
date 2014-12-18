@@ -20,7 +20,7 @@
         <% if current_user.try(:admin) %>
         <li> <%= link_to "Users", admin_users_path %> </li>
         <% end %>
-        <li> <%= link_image_tag current_user.try(:image) %> </li>
+        <li> <%= current_user_image_tag %> </li>
         <li> <%= user_tag %> </li>
         <% if user_signed_in? %>
           <li> 
