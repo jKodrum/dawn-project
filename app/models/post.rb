@@ -6,5 +6,5 @@ class Post < ActiveRecord::Base
 
   has_many :comments, dependent: :destroy
 
-  scope :recent, -> { order("updated_at DESC") }
+  scope :recent, -> { order("created_at DESC") }
 end

@@ -6,7 +6,7 @@
     <%= link_to post.author.name, user_profile_path(post.author.name, post.author.id) %>
   </p>
   <!-- post body -->
-  <p class="blog-post-meta"> <%= post.updated_at.localtime.strftime("%R %m/%d %a, %Y") %> </p>
+  <p class="blog-post-meta"> <%= post.created_at.localtime.strftime("%R %m/%d %a, %Y") %> </p>
   <%= simple_format truncate(post.content, length: 300) %>
   <% if post.content.length > 300 %>
     <p> <%= link_to "繼續閱讀", post_path(post.author.name, post.author.id, post) %> </p>
