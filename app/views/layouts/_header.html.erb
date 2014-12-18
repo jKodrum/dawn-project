@@ -2,7 +2,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <%= link_to root_path, class: "navbar-brand" do %>
+      <%= link_to root_path, class: "navbar-brand", 'data-no-turbolink' => true do %>
         <i class="glyphicon glyphicon-home white"></i> 黎明志工銀行
       <% end %>
     </div>
@@ -12,6 +12,7 @@
           <%= link_to posts_index_path, class: "navbar-brand" do %>
             <i class="glyphicon glyphicon-list-alt"></i> 志工文章
           <% end %>
+        </li>
         <li> 
           <%= render 'layouts/search_bar' %>
         </li>
