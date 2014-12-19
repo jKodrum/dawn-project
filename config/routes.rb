@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :jobs, only: [:index, :show] do
     get 'search', on: :collection
+    get 'distance', on: :collection
   end
 
   get 'posts' => 'posts#index', as: "posts_index"
