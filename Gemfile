@@ -40,6 +40,7 @@ gem 'spring',        group: :development
 
 gem 'devise'
 gem 'will_paginate', '~> 3.0.5'
+gem 'will_paginate-bootstrap'
 gem 'bootstrap_form'
 #gem 'bootstrap_helper'
 gem 'bootstrap-component-helper', '~> 0.2.3'
