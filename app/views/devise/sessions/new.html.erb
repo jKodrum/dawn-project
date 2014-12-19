@@ -1,8 +1,8 @@
 <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "form-signin"}) do |f| %>
   <h2 class="form-signin-heading">登入</h2>
-  <%= f.email_field :email, autofocus: true, placeholder: "Email", icon: "envelope" %>
+  <%= f.email_field :email, autofocus: true, placeholder: "Email", hide_label: true, icon: "envelope" %>
 
-  <%= f.password_field :password, autocomplete: "off", placeholder: "密碼", icon: "lock" %>
+  <%= f.password_field :password, autocomplete: "off", placeholder: "密碼", hide_label: true, icon: "lock" %>
 
   <% if devise_mapping.rememberable? %>
     <div><%= f.check_box :remember_me %> <%= f.label :"記住我"%></div>
