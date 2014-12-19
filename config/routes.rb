@@ -25,4 +25,7 @@ Rails.application.routes.draw do
   get '/admin' => "users#index", as: :admin_users
   get '/user/:user_name(.:user_id)' => "users#show", as: :user_profile
 
+  # google verification
+  get '/google6cd96f3e20442b00.html' => 'google_verification#index'
+
 end
