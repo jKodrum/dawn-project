@@ -24,10 +24,15 @@
         <li> <%= current_user_image_tag %> </li>
         <li> <%= user_tag %> </li>
         <% if user_signed_in? %>
-          <li> 
-          <%= link_to edit_user_registration_path do %>
-            <i class="glyphicon glyphicon-cog"></i>
-          <% end %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" >
+            <i class="glyphicon glyphicon-cog"></i> <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li> <%= link_to "編輯個人帳戶", edit_user_registration_path %> </li>
+              <li> <%= link_to "編輯個人資訊", "#"  %> </li>
+              <li class="divider"></li>
+              <li> <%= link_to "登出", destroy_user_session_path, method: :delete %> </li>
+            </ul>
           </li>
         <% end %>
         <li> <%= signup_tag %> </li>

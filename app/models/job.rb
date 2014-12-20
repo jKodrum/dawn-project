@@ -9,6 +9,5 @@ class Job < ActiveRecord::Base
   scope :search, ->(target) { where("title like ? or content like ? or location like ?",
                                     "%#{target}%", "%#{target}%", "%#{target}%") }
   scope :distance_from, ->(location) { near(location, 10, {unit: :km}).order("distance") }
-
   scope :paginator, ->(page, per_page) { paginate(page: page, per_page: per_page).order(:id) }
 end
