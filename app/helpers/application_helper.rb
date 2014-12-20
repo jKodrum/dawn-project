@@ -1,4 +1,10 @@
 module ApplicationHelper
+  def nav_user_tag
+    if user_signed_in?
+      nav_link_to current_user.name, user_profile_path(current_user.name, current_user.id), path_controller: "users"
+    end
+  end
+
   def user_tag
     if user_signed_in?
       link_to current_user.name, user_profile_path(current_user.name, current_user.id)
@@ -7,19 +13,23 @@ module ApplicationHelper
 
   def signup_tag
     if !user_signed_in?
-      link_to "註冊", new_user_registration_path
+      content_tag(:li) do
+        link_to "註冊", new_user_registration_path
+      end
     end
   end
 
   def login_tag
     if !user_signed_in?
-      link_to "登入", new_user_session_path
+      content_tag(:li) do
+        link_to "登入", new_user_session_path
+      end
     end
   end
 
   def current_user_image_tag
     if user_signed_in? && current_user.provider
-      link_to image_tag(current_user.image), user_profile_path(current_user.name, current_user.id), style: "padding: 0"
+      link_to image_tag(current_user.image), user_profile_path(current_user.name, current_user.id), style: "padding: 0 15px"
     end
   end
 
@@ -69,4 +79,21 @@ module ApplicationHelper
     end 
   end
 
+  def nav_link_to(link_text, link_path, options={}) 
+    default_options = {
+      class: nil,
+      icon: nil,
+      path_controller: params[:controller]
+    }
+    options = default_options.merge(options)
+    if_active = params[:controller]==options[:path_controller] ? "active" : ""
+    options[:class] = if_active << " " << options[:class].to_s
+    options[:icon] &&= "glyphicon glyphicon-#{options[:icon]}"
+     
+    content_tag(:li, class: options[:class]) do
+      link_to link_path, class: "navbar-brand" do
+        content_tag(:span, nil, class: options[:icon]) << ' ' <<link_text
+      end
+    end
+  end
 end

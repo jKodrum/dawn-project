@@ -17,6 +17,7 @@
 
       <!-- comments -->
       <div class="well">
+        <%= flash_tag %>
         <%= render partial: 'comment_list', collection: @post.comments.where('id >= 0'), as: :comment %>
         <%= render 'comment_form' %>
       </div>

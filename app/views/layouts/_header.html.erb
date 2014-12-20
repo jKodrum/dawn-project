@@ -1,28 +1,20 @@
 <!-- Fixed navbar -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
-    <div class="navbar-header">
-      <%= link_to root_path, class: "navbar-brand", 'data-no-turbolink' => true do %>
-        <i class="glyphicon glyphicon-home white"></i> 黎明志工銀行
-      <% end %>
-    </div>
     <div id="navbar" class="navbar-collapse collapse">
+      <!-- left -->
       <ul class="nav navbar-nav">
-        <li>
-          <%= link_to posts_index_path, class: "navbar-brand" do %>
-            <i class="glyphicon glyphicon-list-alt"></i> 志工文章
-          <% end %>
-        </li>
-        <li> 
-          <%= render 'layouts/search_bar' %>
-        </li>
+        <%= nav_link_to "黎明志工銀行", root_path, path_controller: "jobs", icon: "home" %>
+        <%= nav_link_to "志工文章", posts_index_path, path_controller: "posts", icon: "list-alt" %>
+        <li> <%= render 'layouts/search_bar' %> </li>
       </ul>
+      <!-- right -->
       <ul class="nav navbar-nav navbar-right">
         <% if current_user.try(:admin) %>
         <li> <%= link_to "Users", admin_users_path %> </li>
         <% end %>
         <li> <%= current_user_image_tag %> </li>
-        <li> <%= user_tag %> </li>
+        <li> <%= nav_user_tag %> </li>
         <% if user_signed_in? %>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" >
@@ -35,9 +27,9 @@
             </ul>
           </li>
         <% end %>
-        <li> <%= signup_tag %> </li>
-        <li> <%= login_tag %> </li>
+        <%= signup_tag %>
+        <%= login_tag %>
       </ul>
     </div><!--/.nav-collapse -->
-  </div>
+  </div><!--/ container -->
 </nav>
