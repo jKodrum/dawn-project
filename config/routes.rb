@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
 
   get 'posts' => 'posts#index', as: "posts_index"
-  scope 'user/:user_name(.:user_id)' do
+  scope 'user/:user_name.:user_id' do
     resources :posts, only: [:show, :create, :update, :destroy, :edit] do
       resources :comments, only: [:create, :update, :edit, :destroy]
     end
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   # User
   get '/admin' => "users#index", as: :admin_users
-  get '/user/:user_name(.:user_id)' => "users#show", as: :user_profile
+  get '/user/:user_name.:user_id' => "users#show", as: :user_profile
 
   # google verification
   get '/google6cd96f3e20442b00.html' => 'google_verification#index'

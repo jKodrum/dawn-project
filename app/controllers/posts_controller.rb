@@ -54,6 +54,6 @@ class PostsController < ApplicationController
   end
 
   def find_user
-    @user = User.find_by_name(params[:user_name]) 
+    @user = User.find(params[:user_id]) 
   end
 end

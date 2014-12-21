@@ -35,7 +35,7 @@ module ApplicationHelper
 
   def link_user_image_tag(user)
     if user.provider
-      link_to image_tag(user.image), user_profile_path(user.name, user.id), style: "padding: 0"
+      link_to image_tag(user.image, size: "50"), user_profile_path(user.name, user.id), style: "padding: 0"
     end
   end
 
