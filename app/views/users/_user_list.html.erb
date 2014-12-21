@@ -6,5 +6,5 @@
   <td> <%= user.email %> </td>
   <td> <%= user.admin %> </td>
   <td> <%= link_to "Delete User", destroy_path(user.name, user.id),
-    class: "btn btn-danger", method: :delete, confirm: "Are you sure?" %> </td>
+    class: "btn btn-danger", method: :delete, data: {confirm: "Are you sure?"} %> </td>
 </tr>
