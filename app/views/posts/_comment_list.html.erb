@@ -3,8 +3,9 @@
   <%= link_user_image_tag comment.commenter %>
   </div>
   <div class="media-body">
-    <p> <%= link_to comment.commenter.name, user_profile_path(comment.commenter.name, comment.commenter.id) %> </p>
-      <small> <%= comment.created_at.localtime.strftime("%R %m/%d %a, %Y") %> </small>
+    <p> <%= link_to comment.commenter.name, user_profile_path(comment.commenter.name, comment.commenter.id) %>
+      <small style="color: #aaaaaa;"> <%= comment.created_at.localtime.strftime("%m/%d %a, %Y at %R") %> </small>
+    </p>
       <%= simple_format comment.content %>
   </div>
 </div>

@@ -2,11 +2,10 @@ class CommentsController < ApplicationController
 
   def create
     @post = Post.find(params[:post_id])
-    @author = @post.author
-    @comment = @post.comments.new
+    @author = current_user
+    @comment = @post.comments.new(comment_params)
     @comment.commenter = @author
     if @comment.save
-      flash[:notice] = "成功"
     else
       flash[:warning] = "留言錯誤"
     end
