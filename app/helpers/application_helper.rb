@@ -28,8 +28,8 @@ module ApplicationHelper
   end
 
   def current_user_image_tag
-    if user_signed_in? && current_user.provider
-      link_to image_tag(current_user.image), user_profile_path(current_user.name, current_user.id), style: "padding: 0 15px"
+    if user_signed_in?
+      link_to image_tag(current_user.image, size: "50"), user_profile_path(current_user.name, current_user.id), style: "padding: 0 15px"
     end
   end
 
