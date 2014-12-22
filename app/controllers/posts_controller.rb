@@ -11,6 +11,9 @@ class PostsController < ApplicationController
 
   def edit
     @post = @user.posts.find(params[:id])
+    unless current_user==@post.author || current_user.admin
+      redirect_to :back
+    end
   end
 
   def update
