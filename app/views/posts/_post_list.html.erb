@@ -3,7 +3,7 @@
     <!-- Post Title -->
     <h2 class="blog-post-title"> <%= link_to post.title, post_path(post.author.name, post.author.id, post) %> </h2>
     <!-- Edit/Delete Button -->
-    <% if current_user==post.author || current_user.admin %>
+    <% if current_user==post.author || current_user.try(:admin) %>
       <div class="btn-group pull-right">
         <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" role="button" >
           <i class="glyphicon glyphicon-cog"></i> <span class="caret"></span></button>
