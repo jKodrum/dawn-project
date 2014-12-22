@@ -28,4 +28,5 @@ Rails.application.routes.draw do
   # google verification
   get '/google6cd96f3e20442b00.html' => 'google_verification#index'
 
+  get '*path' => redirect('/')
 end
