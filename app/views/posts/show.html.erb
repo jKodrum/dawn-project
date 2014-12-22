@@ -1,26 +1,33 @@
-<div class="post">
-  <div class="row">
-    <div class="col-md-8">
-      <!-- Post Title -->
-      <h2 class="blog-post-title"> <%= @post.title %> </h2>
-      <p> 
-        <%= link_user_image_tag @post.author %>
-        <%= link_to @post.author.name, user_profile_path(@post.author.name, @post.author.id) %>
-      </p>
-      <!-- Post Body -->
-      <p class="blog-post-meta"> <%= @post.created_at.localtime.strftime("%R %m/%d %a, %Y") %> </p>
-      <%= simple_format @post.content %><br />
-      <% if current_user==@post.author %>
-        <%= link_to "編輯文章", edit_post_path(@post.author.name, @post.author.id, @post), class: "btn btn-warning" %>
-        <%= link_to "刪除文章", post_path(@post.author.name, @post.author.id , @post), class: "btn btn-danger btn-sm", method: :delete, data: {confirm: "確定刪除？"} %>
-      <% end %>
-
-      <!-- comments -->
-      <div class="well">
-        <%= flash_tag %>
-        <%= render partial: 'comment_list', collection: @post.comments.where('id >= 0'), as: :comment %>
-        <%= render 'comment_form' %>
+<div class="row">
+  <div class="col-md-8">
+    <!-- Post Title -->
+    <h2 class="blog-post-title"> <%= @post.title %> </h2>
+    <!-- Edit/Delete Button -->
+    <% if current_user==@post.author %>
+      <div class="btn-group pull-right">
+        <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" role="button" >
+          <i class="glyphicon glyphicon-cog"></i> <span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu">
+          <li> <%= link_to "編輯文章", edit_post_path(@post.author.name, @post.author.id, @post) %> </li>
+          <li class="divider"></li>
+          <li> <%= link_to "刪除文章", post_path(@post.author.name, @post.author.id , @post), method: :delete, data: { confirm: "確定刪除？"} %> </li>
+        </ul>
       </div>
+    <% end %>
+    <!-- Author / Date -->
+    <p> 
+      <%= link_user_image_tag @post.author %>
+      <%= link_to @post.author.name, user_profile_path(@post.author.name, @post.author.id) %>
+    </p>
+    <!-- Post Body -->
+    <p class="blog-post-meta"> <%= @post.created_at.localtime.strftime("%R %m/%d %a, %Y") %> </p>
+    <%= simple_format @post.content %><br />
+
+    <!-- comments -->
+    <div class="well">
+      <%= flash_tag %>
+      <%= render partial: 'comment_list', collection: @post.comments.where('id >= 0'), as: :comment %>
+      <%= render 'comment_form' %>
     </div>
-  </div><!-- row -->
-</div>
+  </div>
+</div><!-- row -->
