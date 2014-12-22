@@ -1,4 +1,4 @@
-<%= bootstrap_form_for [@post, @comment], url: post_comments_path(@post.author, @post.author, @post, @comment) do |f| %>
+<%= bootstrap_form_for [@post, @post.comments.new], url: post_comments_path(@post.author, @post.author, @post, @comment) do |f| %>
   <%= current_user_image_tag %>
   <%= user_tag %>
   <%= f.text_field :content, hide_label: true, placeholder: "留言...", icon: "pencil" %>

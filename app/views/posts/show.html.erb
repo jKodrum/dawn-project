@@ -27,7 +27,13 @@
     <div class="well">
       <%= flash_tag %>
       <%= render partial: 'comment_list', collection: @post.comments.where('id >= 0'), as: :comment %>
-      <%= render 'comment_form' %>
+      <hr>
+      <% if current_user %>
+        <%= render 'comment_form' %>
+      <% else %>
+        <br>
+        <%= render text: "登入後可留言" %>
+      <% end %>
     </div>
   </div>
 </div><!-- row -->
