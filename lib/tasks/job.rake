@@ -4,27 +4,33 @@ namespace :job do
     require 'open-uri'
 
     # Get URLs
+    puts "get urls"
     urls = get_urls
-    @jobs = []
-    urls.each do |url|
-      @jobs << parse_104_web(url)
+    jobs = []
+    puts "start parsing..."
+    urls.each_with_index do |url, cnt|
+      job_hash = parse_104_web(url)
+      j = Job.new
+      job_hash.each do |key, value|
+        j.send(key.to_s + "=", value.to_s)
+      end
+      begin
+        if j.save!
+          puts cnt.to_s + "success!" + j.id.to_s + ":" + j.title
+        end
+      rescue
+        puts cnt.to_s + "fail" + j.id.to_s + ":" + j.title
+      end
     end
     puts "Parse it! Yo!!"
+    puts "Insert them. Yo!!"
   end
 
-  def getjobs
-    @jobs.each do |h|
-      h.each do |key, value|
-        puts key.to_s + " : " + value.to_s
-      end
-      puts ""
-    end
-  end
 
   def get_urls
     base_url = "http://www.104.com.tw" 
     urls = []
-    (2..2).each do |page|
+    (1..32).each do |page|
       raw_html = open("http://www.104.com.tw/area/volunteer/volunteer.cfm?page=#{page}").read
       # find_all <td align="left">
       narrowed_html = raw_html.scan(/<td align=\"left\"><a.*/)
@@ -91,7 +97,7 @@ namespace :job do
         m = raw_html.match(item[2])
       elsif item[0].include? "telesrc"
         teletmp = raw_html.scan(item[2])
-        if teletmp
+        if teletmp[0]
           m = teletmp[0][0].match(/src='([^']+)/)
         end
       else
@@ -114,6 +120,10 @@ namespace :job do
     return job_hash
   end
 
+  task :clear => :environment do
+    desc "clear job model"
+    Job.destroy_all
+  end
   
   task :py_insert_jobs => :environment do
     desc "insert jobs through 104jobdet.py, write log to /insert_log.txt"
