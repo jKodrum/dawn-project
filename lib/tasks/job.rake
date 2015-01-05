@@ -4,11 +4,23 @@ namespace :job do
     require 'open-uri'
 
     # Get URLs
-    puts "get urls"
+    puts "get urls..."
     urls = get_urls
+    all = urls.size
+    puts "There are #{all} urls"
+    puts "start parsing"
     jobs = []
-    puts "start parsing..."
+    parse_cnt = 1
     urls.each_with_index do |url, cnt|
+      if cnt==all
+        parse_cnt += 1
+        if parse_cnt > 5
+          break
+        end
+        puts "######################## #{parse_cnt.ordinalize} parse ############################"
+        puts "There are #{urls.size - all} urls left"
+        all = urls.size
+      end
       job_hash = parse_104_web(url)
       j = Job.new
       job_hash.each do |key, value|
@@ -16,14 +28,26 @@ namespace :job do
       end
       begin
         if j.save!
-          puts cnt.to_s + "success!" + j.id.to_s + ":" + j.title
+          puts cnt.to_s + ":success! id:" + j.id.to_s + ":" + j.title
+          if j.lat==nil
+            puts "No Location : " + url
+            j.destroy
+            # re-parse the url later
+            urls << url
+          end
         end
       rescue
-        puts cnt.to_s + "fail" + j.id.to_s + ":" + j.title
+        print cnt.to_s + ":fail: "
+        if j.errors.any?
+          puts "Empty"
+          # re-parse the url later
+          urls << url
+        else
+          puts "Duplicate"
+        end
       end
     end
     puts "Parse it! Yo!!"
-    puts "Insert them. Yo!!"
   end
 
 
@@ -123,6 +147,7 @@ namespace :job do
   task :clear => :environment do
     desc "clear job model"
     Job.destroy_all
+    ActiveRecord::Base.connection.reset_pk_sequence!("jobs")
   end
   
   task :py_insert_jobs => :environment do
