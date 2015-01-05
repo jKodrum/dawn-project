@@ -42,6 +42,7 @@ namespace :job do
         if j.save! && j.lat==nil
           puts cnt.to_s + ":FAIL to reach Location: " + j.title
           j.destroy
+          # reset auto_increased id
           ActiveRecord::Base.connection.reset_pk_sequence!("jobs")
         end
       rescue
