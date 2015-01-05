@@ -8,46 +8,54 @@ namespace :job do
     urls = get_urls
     all = urls.size
     puts "There are #{all} urls"
-    puts "start parsing"
+    puts "start parsing..."
     jobs = []
     parse_cnt = 1
+
+    # Parse every website
     urls.each_with_index do |url, cnt|
+      # take a rest, otherwise the parsing would be blocked by 104
+      if (cnt+1) % 15 == 0
+        sleep(2)
+      end
+
+      # deal with a few failure by repeatition
       if cnt==all
         parse_cnt += 1
         if parse_cnt > 5
           break
         end
-        puts "######################## #{parse_cnt.ordinalize} parse ############################"
+        puts "############################ #{parse_cnt.ordinalize} parse ############################"
         puts "There are #{urls.size - all} urls left"
         all = urls.size
       end
+
+      # return hashed data after parse
       job_hash = parse_104_web(url)
       j = Job.new
+      # get ready to insert a record
       job_hash.each do |key, value|
         j.send(key.to_s + "=", value.to_s)
       end
       begin
-        if j.save!
-          puts cnt.to_s + ":success! id:" + j.id.to_s + ":" + j.title
-          if j.lat==nil
-            puts "No Location : " + url
-            j.destroy
-            # re-parse the url later
-            urls << url
-          end
+        if j.save! && j.lat==nil
+          puts "FAIL to reach Location: " + j.title
+          j.destroy
+          ActiveRecord::Base.connection.reset_pk_sequence!("jobs")
         end
       rescue
-        print cnt.to_s + ":fail: "
+        print cnt.to_s + ":FAIL: "
         if j.errors.any?
           puts "Empty"
           # re-parse the url later
           urls << url
         else
-          puts "Duplicate"
+          puts "Duplicated"
         end
       end
     end
     puts "Parse it! Yo!!"
+    puts "failure: #{urls.size - all}"
   end
 
 
@@ -147,6 +155,7 @@ namespace :job do
   task :clear => :environment do
     desc "clear job model"
     Job.destroy_all
+    puts %(Clear "Job" model)
     ActiveRecord::Base.connection.reset_pk_sequence!("jobs")
   end
   
