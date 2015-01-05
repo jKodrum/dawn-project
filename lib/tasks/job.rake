@@ -16,6 +16,7 @@ namespace :job do
     urls.each_with_index do |url, cnt|
       # take a rest, otherwise the parsing would be blocked by 104
       if (cnt+1) % 15 == 0
+        puts (cnt + 1).to_s + " finished."
         sleep(2)
       end
 
@@ -39,7 +40,7 @@ namespace :job do
       end
       begin
         if j.save! && j.lat==nil
-          puts "FAIL to reach Location: " + j.title
+          puts cnt.to_s + ":FAIL to reach Location: " + j.title
           j.destroy
           ActiveRecord::Base.connection.reset_pk_sequence!("jobs")
         end
