@@ -57,7 +57,7 @@ namespace :job do
       end
     end
     puts "Parse it! Yo!!"
-    puts "failure: #{urls.size - all}"
+    puts "url lost: #{urls.size - all}"
   end
 
 
