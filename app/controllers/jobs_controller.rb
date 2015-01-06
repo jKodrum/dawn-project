@@ -30,6 +30,7 @@ class JobsController < ApplicationController
   private
   def get_map_hash
     Gmaps4rails.build_markers(@jobs) do |job, marker|
+      marker.json({id: job.id})
       marker.lat job.lat
       marker.lng job.lng
       marker.infowindow %(##{job.id} #{job.title}<br>地址： #{job.location})
