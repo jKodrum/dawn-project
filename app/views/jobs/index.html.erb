@@ -75,12 +75,9 @@ handler.buildMap( mapOptions, mapFunc );
 function bindJobToMarker(json_array){
   _.each(json_array, function(json){
     $("#" + json.id).click(function(){ focus(json.marker); });
-    $(json.marker).click(function(){ this.hide(); });
   });
 };
 function focus(marker){
-  var zoom = handler.getMap().getZoom();
-  handler.getMap().setZoom(zoom > 14 ? zoom : 14);
   marker.setMap(handler.getMap()); //because clusterer removes map property from marker
   marker.panTo();
   google.maps.event.trigger(marker.getServiceObject(), 'click');
