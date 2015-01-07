@@ -1,5 +1,5 @@
 <tr id=<%= job.id %>> 
   <td> <%= job.last_modified.strftime("%m/%e, %Y") %> </td>
-  <td> <%= link_to truncate(job.title, length:14), job_path(job) %> </td>
+  <td> <%= link_to truncate(job.title, length:13), job_path(job) %> </td>
   <td> <%= truncate(job.location, length:13) %> </td>
 </tr>

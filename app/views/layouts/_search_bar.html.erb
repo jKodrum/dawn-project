@@ -1,5 +1,5 @@
 <%= form_tag( search_jobs_path, method: :get, class: "navbar-form navbar-left" ) do %>
-  <%= text_field_tag(:target, nil, placeholder: "找志工服務", class: "form-control", style: "width: 210px;") %>
+  <%= text_field_tag(:target, nil, placeholder: "找志工服務", value: params[:target], class: "form-control", style: "width: 210px;") %>
   <%= button_tag(type: "submit", class: "btn btn-default") do %>
     <i class="glyphicon glyphicon-search"></i>
   <% end %>

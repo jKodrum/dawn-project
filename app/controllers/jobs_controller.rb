@@ -1,10 +1,16 @@
 class JobsController < ApplicationController
 
   def index
-    @per_page = params[:format] ? params[:format] : 10
+    @per_page = params[:per_page] ? params[:per_page] : 10
     @page = params[:page]
-    @jobs = Job.paginator(@page, @per_page)
-    @hash = get_map_hash
+    if @location = params[:location]
+      distance
+    elsif @target = params[:target]
+      search
+    else
+      @jobs = Job.paginator(@page, @per_page)
+      @hash = get_map_hash
+    end
   end
 
   def show
@@ -12,14 +18,14 @@ class JobsController < ApplicationController
   end
 
   def search
-    @per_page = params[:format] ? params[:format] : 10
+    @per_page = params[:per_page] ? params[:per_page] : 10
     @jobs = Job.search(params[:target]).paginate(page: params[:page], per_page: @per_page).order(:id)
     @hash = get_map_hash
     render :index
   end
 
   def distance
-    @per_page = params[:format] ? params[:format] : 10
+    @per_page = params[:per_page] ? params[:per_page] : 10
     @location = params[:location]
     @page = params[:page]
     @jobs = Job.distance_from(@location).paginator(@page, @per_page)
