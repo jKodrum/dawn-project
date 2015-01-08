@@ -41,6 +41,7 @@ class User < ActiveRecord::Base
       user.oauth_token = auth.credentials.token
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)##
       user.image = auth.info.image
+      user.image_large = user.facebook.get_picture("me", height: 220, width: 220)
       user.save!
     end
   end
