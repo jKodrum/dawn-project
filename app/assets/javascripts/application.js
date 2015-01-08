@@ -16,4 +16,5 @@
 //= require bootstrap_component_helper
 //= require underscore
 //= require gmaps/google
+//= require loadgmaps
 //= require_tree .

@@ -45,44 +45,6 @@
   </div><!-- /col -->
 </div><!-- /row -->
 
-
-
-
 <script type="text/javascript">
-
-// Build handler
-handler = Gmaps.build('Google', {markers: {clusterer: {} } });
-var mapStyle = 
-//[{"featureType":"water","stylers":[{"color":"#021019"}]},{"featureType":"landscape","stylers":[{"color":"#08304b"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#0c4152"},{"lightness":5}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#0b434f"},{"lightness":25}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"road.arterial","elementType":"geometry.stroke","stylers":[{"color":"#0b3d51"},{"lightness":16}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#000000"}]},{"elementType":"labels.text.fill","stylers":[{"color":"#ffffff"}]},{"elementType":"labels.text.stroke","stylers":[{"color":"#000000"},{"lightness":13}]},{"featureType":"transit","stylers":[{"color":"#146474"}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#000000"}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#144b53"},{"lightness":14},{"weight":1.4}]}];
-[];
-// Set options and onMapLoad function to build map
-mapOptions = { internal: {id: 'map'},
-               provider: { styles: mapStyle }
-             };
-mapFunc = function(){
-  var job_hash = <%= raw @hash.to_json %>;
-  markers = handler.addMarkers(job_hash);
-  _.each(job_hash, function(json, index){
-    json.marker = markers[index];
-  });
-  // click job <tr> will focus to the corresponding marker
-  bindJobToMarker(job_hash);
-
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
-}
-// Build the map
-handler.buildMap( mapOptions, mapFunc );
-
-function bindJobToMarker(json_array){
-  _.each(json_array, function(json){
-    $("#" + json.id).click(function(){ focus(json.marker); });
-  });
-};
-function focus(marker){
-  marker.setMap(handler.getMap()); //because clusterer removes map property from marker
-  marker.panTo();
-  google.maps.event.trigger(marker.getServiceObject(), 'click');
-}
-
+  initGmaps(<%= raw @hash.to_json %>)
 </script>
