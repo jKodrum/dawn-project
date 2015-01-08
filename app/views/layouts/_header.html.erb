@@ -20,7 +20,9 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" >
             <i class="glyphicon glyphicon-cog"></i> <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li> <%= link_to "編輯個人帳戶", edit_user_registration_path %> </li>
+              <% if current_user.provider == "dawnbank" %>
+                <li> <%= link_to "編輯個人帳戶", edit_user_registration_path %> </li>
+              <% end %>
               <li> <%= link_to "編輯個人資訊", "#"  %> </li>
               <li class="divider"></li>
               <li> <%= link_to "登出", destroy_user_session_path, method: :delete %> </li>
