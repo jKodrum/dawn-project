@@ -1,7 +1,8 @@
 <tr> 
   <td> # </td>
   <td> <%= user.id %> </td>
-  <td> <%= link_to user.name, user_profile_path(user.name, user.id) %> </td>
+  <td> <%= link_user_image_tag user %>
+    <%= link_to user.name, user_profile_path(user.name, user.id) %> </td>
   <td> <%= user.provider %> </td>
   <td> <%= user.email %> </td>
   <td> <%= user.admin %> </td>
