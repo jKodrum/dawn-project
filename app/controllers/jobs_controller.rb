@@ -39,7 +39,7 @@ class JobsController < ApplicationController
       marker.json({id: job.id})
       marker.lat job.lat
       marker.lng job.lng
-      marker.infowindow %(##{job.id} #{job.title}<br>地址： #{job.location})
+      marker.infowindow %(#{job.title}<br>地址： #{job.location})
     end
   end
 end
