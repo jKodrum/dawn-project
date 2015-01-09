@@ -1,0 +1,7 @@
+<tr> 
+  <td> # </td>
+  <td> <%= volunteer.id %> </td>
+  <td> <%= link_to volunteer.name, 
+                   user_profile_path(volunteer.name, 
+                                     volunteer.id) %> </td>
+</tr>

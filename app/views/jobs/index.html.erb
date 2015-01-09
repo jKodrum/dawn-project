@@ -39,7 +39,7 @@
         </tr>
       </thead>
       <tbody> 
-      <%= render partial: 'job_list', collection: @jobs, as: :job %>
+      <%= render partial: 'job_list', collection: @jobs, as: :job, locals: {length: 13} %>
       </tbody>
     </table>
   </div><!-- /col -->

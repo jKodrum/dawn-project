@@ -96,4 +96,15 @@ module ApplicationHelper
       end
     end
   end
+
+  def searchPath
+    if current_page?(search_volunteers_path)
+      search_volunteers_path
+    elsif current_page?(search_posters_path)
+      search_posters_path
+    else
+      search_jobs_path
+    end
+  end
+
 end

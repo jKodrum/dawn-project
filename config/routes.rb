@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'search/jobs'
+  get 'search/volunteers'
+  get 'search/posters'
+
   root 'jobs#index'
   devise_for :users, :controllers => 
                       { omniauth_callbacks: "omniauth/omniauth_callbacks" }

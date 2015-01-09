@@ -28,6 +28,9 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
 
+  scope :search, ->(target) { where("name like ? or uid = ? ",
+                                    "%#{target}%", "#{target.to_i}") }
+
   before_create :set_provider
 
   def self.from_omniauth(auth)

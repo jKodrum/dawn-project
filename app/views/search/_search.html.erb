@@ -1,0 +1,20 @@
+<h1>搜尋 '<%= params[:target] %>'</h1>
+<div class="row">
+  <div class="col-md-3">
+    <br>
+    <ul class="nav nav-pills nav-stacked">
+      <li role="presentation" class=<%= 'active' if current_page?(search_jobs_path) %>>
+        <%= link_to "志工服務", search_jobs_path(target: params[:target]) %>
+      </li>
+      <li role="presentation" class=<%= 'active' if current_page?(search_volunteers_path) %>>
+        <%= link_to "志工", search_volunteers_path(target: params[:target]) %>
+      </li>
+      <li role="presentation" class=<%= 'active' if current_page?(search_posters_path) %>>
+        <%= link_to "文章", search_posters_path(target: params[:target]) %>
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-9">
+    <%= yield :search_body %>
+  </div>
+</div>
