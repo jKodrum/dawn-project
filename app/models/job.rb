@@ -10,4 +10,5 @@ class Job < ActiveRecord::Base
                                     "%#{target}%", "%#{target}%", "%#{target}%") }
   scope :distance_from, ->(location) { near(location, 10, {unit: :km}).order("distance") }
   scope :paginator, ->(page, per_page) { paginate(page: page, per_page: per_page).order(:id) }
+  scope :paginator_recent, ->(page, per_page) { paginate(page: page, per_page: per_page).order(last_modified: :desc) }
 end

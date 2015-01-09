@@ -8,7 +8,7 @@ class JobsController < ApplicationController
     elsif @target = params[:target]
       search
     else
-      @jobs = Job.paginator(@page, @per_page)
+      @jobs = Job.paginator_recent(@page, @per_page)
       @hash = get_map_hash
     end
   end
