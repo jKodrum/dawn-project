@@ -9,9 +9,6 @@
       <li role="presentation" class=<%= 'active' if current_page?(search_volunteers_path) %>>
         <%= link_to "志工", search_volunteers_path(target: params[:target]) %>
       </li>
-      <li role="presentation" class=<%= 'active' if current_page?(search_posters_path) %>>
-        <%= link_to "文章", search_posters_path(target: params[:target]) %>
-      </li>
     </ul>
   </div>
   <div class="col-md-9">
