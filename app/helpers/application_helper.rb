@@ -107,4 +107,18 @@ module ApplicationHelper
     end
   end
 
+  def friendship_status(volunID)
+    unless current_user
+      return status = "login to make friend"
+    end
+
+    if current_user.id == volunID
+      status = ""
+    elsif current_user.friendships.find_by_friend_id(volunID).try(:status)
+      status = current_user.friendships.find_by_friend_id(volunID).status
+    else
+      status = "not friend"
+    end
+  end
+
 end

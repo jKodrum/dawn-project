@@ -1,7 +1,6 @@
 <tr> 
-  <td> # </td>
-  <td> <%= volunteer.id %> </td>
-  <td> <%= link_to volunteer.name, 
-                   user_profile_path(volunteer.name, 
-                                     volunteer.id) %> </td>
+  <td> <%= link_user_image_tag volunteer %>
+  <%= link_to volunteer.name, user_profile_path(volunteer.name, volunteer.id) %> </td>
+  <td> <%= friendship_status(volunteer.id) %> </td>
+  <td> <%= friend_btn_tag(volunteer) %> </td>
 </tr>
