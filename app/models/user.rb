@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
   # insensitive query
   scope :search, ->(target) { where("lower(name) like ? or uid = ? ",
                                     "%#{target.downcase}%", "#{target.to_i}") }
+  scope :recent_reg, -> { order("created_at desc") }
 
   before_create :set_provider
 

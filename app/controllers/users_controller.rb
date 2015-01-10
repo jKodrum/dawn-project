@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     unless current_user.try(:admin)
       redirect_to :root
     end
-    @users = User.where.not(id: current_user)
+    @users = User.where.not(id: current_user).recent_reg
   end
 
   def show
