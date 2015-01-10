@@ -5,6 +5,7 @@
     <%= link_to user.name, user_profile_path(user.name, user.id) %> </td>
   <td> <%= user.provider %> </td>
   <td> <%= user.email %> </td>
+  <td> <%= user.created_at.strftime("%m/%e, %Y") %> </td>
   <td> <%= user.admin %> </td>
   <td> <%= link_to "Delete User", destroy_path(user.name, user.id),
     class: "btn btn-danger", method: :delete, data: {confirm: "確定刪除該用戶?"} %> </td>
