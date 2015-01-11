@@ -4,10 +4,13 @@
     <br>
     <ul class="nav nav-pills nav-stacked">
       <li role="presentation" class=<%= 'active' if current_page?(search_jobs_path) %>>
-        <%= link_to "志工服務", search_jobs_path(target: params[:target]) %>
+        <%= link_to "找志工服務", search_jobs_path(target: params[:target]) %>
       </li>
       <li role="presentation" class=<%= 'active' if current_page?(search_volunteers_path) %>>
-        <%= link_to "志工", search_volunteers_path(target: params[:target]) %>
+        <%= link_to "找志工", search_volunteers_path(target: params[:target]) %>
+      </li>
+      <li role="presentation" class=<%= 'active' if current_page?(search_posters_path) %>>
+        <%= link_to "找文章", search_posters_path(target: params[:target]) %>
       </li>
     </ul>
   </div>

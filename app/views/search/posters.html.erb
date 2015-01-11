@@ -1,2 +1,7 @@
-<h1>Search#posters</h1>
-<p>Find me in app/views/search/posters.html.erb</p>
+<%= content_for :search_body do %>
+  <%= will_paginate @posts, style: "align-text: center;" %>
+  <%= render partial: 'posts/post_list', collection: @posts, as: :post, locals: {show_comment: false} %>
+  <%= will_paginate @posts, style: "align-text: center;" %>
+<% end %>
+
+<%= render 'search' %>

@@ -28,18 +28,20 @@
 
 
     <!-- Comments -->
-    <div class="well">
-      <%= flash_tag %>
-      <%= render partial: 'posts/comment_list', collection: post.comments.where('id >= 0'), as: :comment %>
-      <hr>
-      <% if current_user %>
-        <% @post = post %>
-        <%= render 'posts/comment_form' %>
-      <% else %>
-        <br>
-        <%= render text: "登入後可留言" %>
-      <% end %>
-    </div>
+    <% if show_comment %>
+      <div class="well">
+        <%= flash_tag %>
+        <%= render partial: 'posts/comment_list', collection: post.comments.where('id >= 0'), as: :comment %>
+        <hr>
+        <% if current_user %>
+          <% @post = post %>
+          <%= render 'posts/comment_form' %>
+        <% else %>
+          <br>
+          <%= render text: "登入後可留言" %>
+        <% end %>
+      </div>
+    <% end %>
     <hr>
   </div>
 </div>

@@ -11,6 +11,8 @@ class SearchController < ApplicationController
   end
 
   def posters
+    @per_page = params[:per_page] ? params[:per_page] : 10
+    @posts = Post.search(params[:target]).paginate(page: params[:page], per_page: @per_page).order(:id)
   end
 
   private
