@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
   before_action :find_user, except: [:index]
   def index
-    @posts = Post.all.recent
+    @per_page = params[:per_page] ? params[:per_page] : 10
+    @posts = Post.all.paginate(page: params[:page], per_page: @per_page).recent
   end
 
   def show

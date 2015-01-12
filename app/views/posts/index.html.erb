@@ -1,3 +1,5 @@
 <h1> 志工文章 </h1>
 
+<%= will_paginate @posts, style: "align-text: center;" %>
 <%= render( partial: 'post_list', collection: @posts, as: :post, locals: {show_comment: true}) || "尚未發佈任何文章" %>
+<%= will_paginate @posts, style: "align-text: center;" %>
